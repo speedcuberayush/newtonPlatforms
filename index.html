@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Protest+Strike&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Protest Strike", sans-serif;
+      }
+
+      body {
+        height: 100vh;
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+      }
+
+      main {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+      }
+
+      .item {
+        width: 200px;
+        height: 300px;
+        list-style-type: none;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1;
+        background-position: center;
+        background-size: cover;
+        border-radius: 20px;
+        background-repeat: no-repeat;
+        box-shadow: 0 20px 30px rgba(255, 255, 255, 0.3) inset;
+        transition: transform 0.1s, left 0.75s, top 0.75s, width 0.75s,
+          height 0.75s;
+
+        &:nth-child(1),
+        &:nth-child(2) {
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          transform: none;
+          border-radius: 0;
+          box-shadow: none;
+          opacity: 1;
+        }
+
+        &:nth-child(3) {
+          left: 50%;
+        }
+        &:nth-child(4) {
+          left: calc(50% + 220px);
+        }
+        &:nth-child(5) {
+          left: calc(50% + 440px);
+        }
+        &:nth-child(6) {
+          left: calc(50% + 660px);
+          opacity: 0;
+        }
+      }
+
+      .content {
+        width: min(30vw, 400px);
+        position: absolute;
+        top: 50%;
+        left: 3rem;
+        transform: translateY(-50%);
+        font: 400 0.85rem helvetica, sans-serif;
+        color: white;
+        text-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        display: none;
+
+        & .title {
+          font-family: "Protest Strike", sans-serif;
+          text-transform: uppercase;
+          font-size: 42px;
+        }
+
+        & .description {
+          line-height: 1.7;
+          margin: 1rem 0 1.5rem;
+          /* font-size: 0.8rem; */
+          font-size: 16px;
+        }
+
+        & button {
+          width: fit-content;
+          background-color: rgba(0, 0, 0, 0.1);
+          color: white;
+          border: 2px solid white;
+          border-radius: 0.25rem;
+          padding: 0.75rem;
+          cursor: pointer;
+        }
+      }
+
+      .item:nth-of-type(2) .content {
+        display: block;
+        animation: show 0.75s ease-in-out 0.3s forwards;
+      }
+
+      @keyframes show {
+        0% {
+          filter: blur(5px);
+          transform: translateY(calc(-50% + 75px));
+        }
+        100% {
+          opacity: 1;
+          filter: blur(0);
+        }
+      }
+
+      .nav {
+        position: absolute;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 5;
+        user-select: none;
+
+        & .btn {
+          background-color: rgba(255, 255, 255, 0.5);
+          color: rgba(0, 0, 0, 0.7);
+          border: 2px solid rgba(0, 0, 0, 0.6);
+          margin: 0 0.25rem;
+          padding: 0.75rem;
+          border-radius: 50%;
+          cursor: pointer;
+
+          &:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+          }
+        }
+      }
+
+      @media (width > 650px) and (width < 900px) {
+        .content {
+          & .title {
+            font-size: 1rem;
+          }
+          & .description {
+            font-size: 0.7rem;
+          }
+          & button {
+            font-size: 0.7rem;
+          }
+        }
+        .item {
+          width: 160px;
+          height: 270px;
+
+          &:nth-child(3) {
+            left: 50%;
+          }
+          &:nth-child(4) {
+            left: calc(50% + 170px);
+          }
+          &:nth-child(5) {
+            left: calc(50% + 340px);
+          }
+          &:nth-child(6) {
+            left: calc(50% + 510px);
+            opacity: 0;
+          }
+        }
+      }
+
+      @media (width < 650px) {
+        .content {
+          & .title {
+            font-size: 0.9rem;
+          }
+          & .description {
+            font-size: 0.65rem;
+          }
+          & button {
+            font-size: 0.7rem;
+          }
+        }
+        .item {
+          width: 130px;
+          height: 220px;
+
+          &:nth-child(3) {
+            left: 50%;
+          }
+          &:nth-child(4) {
+            left: calc(50% + 140px);
+          }
+          &:nth-child(5) {
+            left: calc(50% + 280px);
+          }
+          &:nth-child(6) {
+            left: calc(50% + 420px);
+            opacity: 0;
+          }
+        }
+      }
+      .item::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(
+          0,
+          0,
+          0,
+          0.5
+        ); /* Adjust the alpha value for the desired tint */
+        z-index: -1; /* Ensure the pseudo-element is behind the content */
+        border-radius: 20px; /* Match the border-radius of .item */
+      }
+
+      .content {
+        position: relative; /* Ensure content stays above the pseudo-element */
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <ul class="slider">
+        <li
+          class="item"
+          style="
+            background-image: url('https://i.ytimg.com/vi/W9sgR87kIks/maxresdefault.jpg');
+          "
+        >
+          <div class="content">
+            <h2 class="title">"OPENAI : CHAT GPT"</h2>
+            <p class="description">
+              ChatGPT represents a groundbreaking leap in conversational AI,
+              designed to facilitate engaging and natural interactions across
+              various platforms and applications. Powered by OpenAI's
+              cutting-edge technology, ChatGPT leverages deep learning
+              algorithms to understand and generate human-like responses,
+              enabling seamless communication between users and machines.
+              Whether it's providing assistance, answering queries, or sparking
+              meaningful conversations, ChatGPT's versatility and adaptability
+              make it a powerful tool for enhancing user experiences in
+              chat-based interfaces. As the boundaries of AI continue to expand,
+              ChatGPT stands at the forefront, shaping the future of
+              human-computer interaction with its ability to comprehend context,
+              exhibit empathy, and generate coherent, contextually relevant
+              responses.
+            </p>
+            <button>Read More</button>
+          </div>
+        </li>
+        <li
+          class="item"
+          style="
+            background-image: url('https://static.skillshare.com/uploads/video/thumbnails/ca8eb1582e5a26af40f7629ec1950de8/original');
+          "
+        >
+          <div class="content">
+            <h2 class="title">"ADOBE : FIREFLY"</h2>
+            <p class="description">
+              Adobe Firefly is a standalone generative AI web application
+              available at firefly.adobe.com. It offers new ways to ideate,
+              create, and communicate while significantly improving creative
+              workflows using generative AI. In addition to the Firefly web app,
+              Adobe also has the broader Firefly family of creative generative
+              AI models, along with features powered by Firefly in Adobe’s
+              flagship apps and Adobe Stock. Firefly is the natural extension of
+              the technology Adobe has produced over the past 40 years, driven
+              by the belief that people should be empowered to bring their ideas
+              into the world precisely as they imagine them.
+            </p>
+            <button>Read More</button>
+          </div>
+        </li>
+        <li
+          class="item"
+          style="
+            background-image: url('https://media.cybernews.com/images/featured-big/2024/01/midjourney-art-lawsuit.jpg');
+          "
+        >
+          <div class="content">
+            <h2 class="title">"MID JOURNEY"</h2>
+            <p class="description">
+              Midjourney is an independent research lab exploring new mediums of
+              thought and expanding the imaginative powers of the human species.
+              We are a small self-funded team focused on design, human
+              infrastructure, and AI. We have 11 full-time staff and an
+              incredible set of advisors.
+            </p>
+            <button>Read More</button>
+          </div>
+        </li>
+        <li
+          class="item"
+          style="
+            background-image: url('https://images.yourstory.com/cs/2/96eabe90392211eb93f18319e8c07a74/Imagesw3p-1708067310011.jpg');
+          "
+        >
+          <div class="content">
+            <h2 class="title">"OPENAI : SORA"</h2>
+            <p class="description">
+              OpenAI's Sora stands as a pioneering leap in artificial
+              intelligence, embodying a multifaceted approach to natural
+              language processing and understanding. Designed with versatility
+              and adaptability at its core, Sora seamlessly integrates
+              cutting-edge techniques, including deep learning and reinforcement
+              learning, to navigate the complexities of human language and
+              problem-solving. Its capabilities extend beyond mere text
+              generation, fostering meaningful interactions, facilitating
+              innovative solutions, and pushing the boundaries of AI research.
+              Sora epitomizes OpenAI's commitment to advancing AI for the
+              betterment of society, promising a future where intelligent
+              systems empower individuals and organizations to tackle challenges
+              with unprecedented insight and creativity.
+            </p>
+            <button>Read More</button>
+          </div>
+        </li>
+        <li
+          class="item"
+          style="
+            background-image: url('https://theawesomer.com/photos/2017/07/simon_stalenhag_the_electric_state_6.jpg');
+          "
+        >
+          <div class="content">
+            <h2 class="title">"SAMSUNG AI"</h2>
+            <p class="description">
+              Samsung's AI advancements, epitomized by the Galaxy AI features,
+              herald a new era of mobile intelligence, now accessible to a wider
+              user base through the One UI 6.1 update. With a hybrid approach
+              blending on-device and cloud-based AI, Galaxy devices like the S23
+              series, Z Fold5, Z Flip5, and Tab S9 series empower users with
+              enhanced communication tools like Chat Assist and Live Translate,
+              streamlined productivity features such as Note Assist and Browsing
+              Assist, and innovative creativity tools like Generative Edit and
+              Instant Slow-mo. This concerted effort to democratize mobile AI
+              underscores Samsung's commitment to not just innovation, but also
+              to enriching the everyday experiences of over 100 million Galaxy
+              users by 2024, promising an AI-driven future that's both
+              accessible and transformative.
+            </p>
+            <button>Read More</button>
+          </div>
+        </li>
+        <li
+          class="item"
+          style="
+            background-image: url('https://tongwing.woon.sg/blog/wp-content/uploads/2021/06/social.png');
+          "
+        >
+          <div class="content">
+            <h2 class="title">"GITHUB : COPIOLT"</h2>
+            <p class="description">
+              GitHub Copilot revolutionizes the developer landscape by offering
+              contextualized support throughout the software development
+              lifecycle, from code completions and chat assistance within IDEs
+              to explanations and documentation assistance on GitHub. Powered by
+              cutting-edge AI, Copilot empowers developers to focus on
+              problem-solving and collaboration while minimizing time spent on
+              mundane tasks, leading to increased job satisfaction, up to 75%
+              higher productivity, and accelerated software delivery without
+              compromising quality. Seamlessly integrated with popular editors
+              like Visual Studio Code, Visual Studio, JetBrains IDEs, and
+              Neovim, Copilot sets itself apart as the most widely adopted AI
+              developer tool, serving millions of individual users and tens of
+              thousands of business customers globally.
+            </p>
+            <button>Read More</button>
+          </div>
+        </li>
+      </ul>
+      <nav class="nav">
+        <ion-icon class="btn prev" name="arrow-back-outline"></ion-icon>
+        <ion-icon class="btn next" name="arrow-forward-outline"></ion-icon>
+      </nav>
+    </main>
+
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <script>
+      const slider = document.querySelector(".slider");
+
+      function activate(e) {
+        const items = document.querySelectorAll(".item");
+        e.target.matches(".next") && slider.append(items[0]);
+        e.target.matches(".prev") && slider.prepend(items[items.length - 1]);
+      }
+
+      document.addEventListener("click", activate, false);
+    </script>
+  </body>
+</html>
